@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function page() {
     useEffect(() => {
       const timeout = setTimeout(() => {
-        window.location.href = "https://hubbrokers.vn/top-forexs-vantagemakets";
+        window.location.href = "https://hubbrokers.vn/top-fx-vantagemakets";
       }, 600);
       return () => clearTimeout(timeout);
       }, []);
