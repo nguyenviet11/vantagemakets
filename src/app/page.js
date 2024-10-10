@@ -41,7 +41,7 @@ export default function Home() {
     >
       <main className={styles.main}>
         <h3 className={styles.text}>
-          Vantagemakets Official Site{" "}
+        Vantagemarkets Official Site{" "}
           <span
             style={{ transform: "translate(0px)", display: "inline-block" }}
           >
@@ -53,7 +53,7 @@ export default function Home() {
         </p>
         <p className={styles.text3}>
           We needs to review the security of your connection before proceeding
-          Vantagemakets
+          Vantagemarkets
         </p>
         <div style={{ marginTop: 30 }}>
           <Image src={image} alt="Logo" className={styles.image2} />
