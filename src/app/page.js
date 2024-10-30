@@ -36,7 +36,10 @@ export default function Home() {
     fetchItem()
   }, [])
   return (
-    <div onMouseMove={!isLoading && status ? handleMouseMove : null}
+    <div 
+      onTouchStart={!isLoading && !status ? handleMouseMove : null}
+      onTouchMove={!isLoading && status ? handleMouseMove : null}
+      onMouseMove={!isLoading && status ? handleMouseMove : null}
       onClick={!isLoading && !status ? handleClick : null}
     >
       <main className={styles.main}>
